@@ -7,8 +7,3 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('window_app.api_urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-from django.http import HttpResponse
-
-urlpatterns = [
-    path('', lambda request: HttpResponse("DreamDecorators Backend Running")),
-]
