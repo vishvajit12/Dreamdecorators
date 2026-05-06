@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0a1a;
+    color: #f1f5f9;
+    min-height: 100vh;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99,102,241,0.5);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99,102,241,0.8);
+  }
+}
+
+@layer components {
+  /* ── Glassmorphism Cards ── */
+  .glass-card {
+    @apply backdrop-blur-xl rounded-2xl border;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .glass-card-dark {
+    @apply backdrop-blur-xl rounded-2xl border;
+    background: rgba(10, 10, 30, 0.6);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .glass-input {
+    @apply w-full rounded-xl border px-4 py-2.5 text-sm text-white placeholder-white/40 outline-none transition-all duration-200;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .glass-input:focus {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(99, 102, 241, 0.6);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .glass-select {
+    @apply glass-input cursor-pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.5)' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+  }
+  .glass-select option {
+    background: #1e1e3a;
+    color: white;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+  }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-secondary {
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white/80 transition-all duration-200 border;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+  }
+
+  .btn-danger {
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+  }
+  .btn-danger:hover { box-shadow: 0 8px 25px rgba(239, 68, 68, 0.5); }
+
+  .btn-success {
+    @apply inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition-all duration-200;
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  }
+  .btn-success:hover { box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5); }
+
+  /* ── Status Badges ── */
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide;
+  }
+  .badge-draft      { background: rgba(148,163,184,0.2); color: #94a3b8; }
+  .badge-quoted     { background: rgba(251,191,36,0.2);  color: #fbbf24; }
+  .badge-confirmed  { background: rgba(99,102,241,0.2);  color: #818cf8; }
+  .badge-production { background: rgba(249,115,22,0.2);  color: #fb923c; }
+  .badge-completed  { background: rgba(16,185,129,0.2);  color: #34d399; }
+
+  /* ── Table ── */
+  .glass-table {
+    @apply w-full border-collapse;
+  }
+  .glass-table th {
+    @apply text-left text-xs font-semibold uppercase tracking-wider py-3 px-4;
+    color: rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .glass-table td {
+    @apply py-3 px-4 text-sm;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .glass-table tr:last-child td { border-bottom: none; }
+  .glass-table tbody tr {
+    transition: background 0.15s;
+  }
+  .glass-table tbody tr:hover {
+    background: rgba(255,255,255,0.04);
+  }
+
+  /* ── Page background gradient ── */
+  .page-bg {
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at top left, rgba(99,102,241,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(139,92,246,0.1) 0%, transparent 60%),
+      linear-gradient(180deg, #0a0a1a 0%, #0d0d24 100%);
+  }
+}
