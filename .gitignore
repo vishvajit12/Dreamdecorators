@@ -37,10 +37,12 @@ build/
 yarn.lock
 package-lock.json
 
-# Environment variables
+# Environment variables (NEVER push sensitive files)
 .env
 .env.local
 .env.*.local
+.env.production
+.env.production.local
 
 # IDE/Editor
 .vscode/

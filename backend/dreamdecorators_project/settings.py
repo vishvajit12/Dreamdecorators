@@ -11,11 +11,11 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-dreamdecorators-2026-change-in-production'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-dreamdecorators-2026-change-in-production')
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -93,10 +93,11 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
 }
 
-# ─── CORS (allow React dev server) ──────────────────────────────────────────
+# ─── CORS ──────────────────────────────────────────────────────────────────
 CORS_ALLOWED_ORIGINS = [
     'https://dreamdecorators.vercel.app',
     'http://localhost:5173',
+    os.environ.get('FRONTEND_URL', 'https://dreamdecorators.vercel.app'),
 ]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [
